@@ -100,9 +100,11 @@ def main():
     JPEGImages_dir = os.path.join(base_dir, 'JPEGImages')  # 在上述文件夹中生成images，annotations两个子文件夹
     anno_dir = os.path.join(base_dir, 'Annotations')
     image_sets_dir = os.path.join(base_dir, 'ImageSets')
+    image_sets_dir_Main = os.path.join(image_sets_dir, 'Main')
     mkr(JPEGImages_dir)
     mkr(anno_dir)
     mkr(image_sets_dir)
+    mkr(image_sets_dir_Main)
     
     train_ann_path = 'mmclassification-master/data/HAM10000_coco/annotations/instances_train2017.json'
     val_ann_path  = 'mmclassification-master/data/HAM10000_coco/annotations/instances_val2017.json'
@@ -115,8 +117,8 @@ def main():
     trans_Annotations(val_ann_path , anno_dir)
 
     # 转换ImageSets文件夹
-    trans_ImageSets(train_ann_path, image_sets_dir)
-    trans_ImageSets(val_ann_path, image_sets_dir)
+    trans_ImageSets(train_ann_path, image_sets_dir_Main)
+    trans_ImageSets(val_ann_path, image_sets_dir_Main)
 
     # 转换图片文件
     sum_images = trans_JPEGImages(source_images_train_path, source_images_val_path, JPEGImages_dir)
@@ -126,3 +128,4 @@ def main():
 if __name__ == "__main__":
     main()
     print('ok')
+
